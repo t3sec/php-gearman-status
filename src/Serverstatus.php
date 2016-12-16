@@ -1,15 +1,15 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
- * This file is part of the Monolog package.
+ * This file is part of the T3sec/GearmanStatus package.
  *
- * (c) Jordi Boggiano <j.boggiano@seld.be>
+ * (c) Marcus Krause <marcus#exp2016@t3sec.info>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace GearmanStatus;
+namespace T3sec\GearmanStatus;
 
 
 class Serverstatus {
