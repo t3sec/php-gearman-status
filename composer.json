@@ -1,6 +1,6 @@
 {
   "name": "t3sec/gearman-status",
-  "description": "Gearman connector for getting status and statistic data",
+  "description": "Library for getting status and statistic data of a Gearman Jobserver",
   "keywords": ["gearman", "jobserver", "queue", "status"],
   "type": "library",
   "authors": [
