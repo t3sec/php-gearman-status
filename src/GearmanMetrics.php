@@ -43,12 +43,18 @@ class GearmanMetrics
     }
 
     public function hasFunction($functionName) {
+        if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
+            $this->pollServer();
+        }
         return (is_array($this->gearmanMetrics) && array_key_exists('status', $this->gearmanMetrics) && array_key_exists($functionName, $this->gearmanMetrics['status']));
     }
 
     public function getRunningTasksByFunction($functionName) {
         $numberTasks = 0;
 
+        if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
+            $this->pollServer();
+        }
         if ($this->hasFunction($functionName)) {
             $numberTasks = intval($this->gearmanMetrics['status'][$functionName]['running']);
         }
@@ -59,6 +65,12 @@ class GearmanMetrics
     public function getNumberOfWorkersByFunction($functionName) {
         $numberWorkers = 0;
 
+        if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
+            $this->pollServer();
+        }
+        if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
+            $this->pollServer();
+        }
         if ($this->hasFunction($functionName)) {
             $numberWorkers = intval($this->gearmanMetrics['status'][$functionName]['workers']);
         }
@@ -69,6 +81,9 @@ class GearmanMetrics
     public function getUnfinishedTasksByFunction($functionName) {
         $numberTasks = 0;
 
+        if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
+            $this->pollServer();
+        }
         if ($this->hasFunction($functionName)) {
             $numberTasks = intval($this->gearmanMetrics['status'][$functionName]['unfinished']);
         }
