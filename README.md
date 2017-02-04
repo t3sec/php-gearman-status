@@ -14,7 +14,7 @@ $ composer require t3sec/gearman-status
 
 ## Usage
 
-1. Namespacing
+### Namespacing
 
 ```php
 use T3sec\GearmanStatus\GearmanMetrics;
@@ -22,7 +22,7 @@ use T3sec\GearmanStatus\GearmanServer;
 ```
 
 
-2. Basic Example
+### Basic Example
 
 ```php
 $server = new GearmanServer();
@@ -34,7 +34,7 @@ var_dump($gearmanMetrics->getRawData());
 Uses default configuration of a Gearman Jobserver and returns raw metrics as array.
 
 
-3. Advanced Example
+### Advanced Example
  
 ```php
 $server = new GearmanServer('192.1.1.10', 4444);
@@ -47,7 +47,7 @@ $unfinishedTasks = $gearmanMetrics->getUnfinishedTasksByFunction('ReverseIpLooku
 Retrieves metrics of a Gearman jobserver at IP 192.1.1.10 listening at port 4444.
 Number of connected workers and unfinished tasks are returned.
 
-4. Exception handling
+### Exception handling
 
 * \InvalidArgumentException is thrown if a GermanServer is configured with invalid settings
 * T3sec\GearmanStatus\Exception\GearmanStatusException is thrown if the connection to the Gearman jobserver cannot be established
