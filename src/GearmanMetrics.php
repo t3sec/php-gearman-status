@@ -30,6 +30,12 @@ class GearmanMetrics
         }
     }
 
+    /**
+     * Set a gearman server configuration
+     *
+     * @param  GearmanServer  $gearmanServer  gearman server
+     * @return  void
+     */
     public function setGearmanServer(GearmanServer $gearmanServer) {
         $this->gearmanServer = $gearmanServer;
         $this->gearmanMetrics = null;
@@ -49,6 +55,11 @@ class GearmanMetrics
         }
     }
 
+    /**
+     * Returns raw data.
+     *
+     * @return  array  raw data
+     */
     public function getRawData() {
         if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
             $this->pollServer();
@@ -56,6 +67,12 @@ class GearmanMetrics
         return $this->gearmanMetrics;
     }
 
+    /**
+     * Tests whether given function is known to jobserver.
+     *
+     * @param  string  $functionName  function name to test
+     * @return  bool  whether function is known in jobserver
+     */
     public function hasFunction($functionName) {
         if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
             $this->pollServer();
@@ -63,6 +80,12 @@ class GearmanMetrics
         return (is_array($this->gearmanMetrics) && array_key_exists('status', $this->gearmanMetrics) && array_key_exists($functionName, $this->gearmanMetrics['status']));
     }
 
+    /**
+     * Returns running tasks for given function.
+     *
+     * @param  string $functionName  function name to test
+     * @return  int  number of running tasks
+     */
     public function getRunningTasksByFunction($functionName) {
         $numberTasks = 0;
 
@@ -76,6 +99,12 @@ class GearmanMetrics
         return $numberTasks;
     }
 
+    /**
+     * Returns number of workers for given function.
+     *
+     * @param  string  $functionName  function name to test
+     * @return  int  number of workers
+     */
     public function getNumberOfWorkersByFunction($functionName) {
         $numberWorkers = 0;
 
@@ -92,6 +121,12 @@ class GearmanMetrics
         return $numberWorkers;
     }
 
+    /**
+     * Returns number of unfinished tasks for given function.
+     *
+     * @param  string  $functionName  function name to test
+     * @return  int  number of unfinished tasks
+     */
     public function getUnfinishedTasksByFunction($functionName) {
         $numberTasks = 0;
 
