@@ -35,6 +35,20 @@ class GearmanMetrics
         $this->gearmanMetrics = null;
     }
 
+    /**
+     * Checks whether Gearman server is running.
+     *
+     * @return  bool  whether Gearman server is running
+     */
+    public function isServerRunning() {
+        try {
+            $this->pollServer();
+            return TRUE;
+        } catch (GearmanStatusException $e) {
+            return FALSE;
+        }
+    }
+
     public function getRawData() {
         if (is_null($this->gearmanMetrics) || !is_array($this->gearmanMetrics)) {
             $this->pollServer();
